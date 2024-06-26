@@ -1,0 +1,83 @@
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    /* max-width: 1140px; */
+    height: 100vh;    
+    margin: auto;
+    background-color: black;
+    position: relative;
+}
+
+.container::before,
+.container::after {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+
+    position: absolute;
+    content: "";
+    display: block;
+}
+
+.container::before {
+    animation: circle-forwards 50s linear infinite alternate;
+    background: url(imgs/circle-broken-01.png) 50% / contain no-repeat;
+    
+    width: calc(100% - 160px);
+    height: calc(100% - 160px);
+}
+.container::after {
+    animation: circle-backwards 50s linear infinite alternate, fade-in 1s ease-in forwards infinite alternate, fade-out 2s 1s ease-out forwards infinite alternate;
+    background: url(imgs/circle-broken-02.png) 50% / contain no-repeat;
+    
+    width: calc(100% - 116px);
+    height: calc(100% - 116px);
+}
+
+
+/* Animations */
+
+@keyframes circle-forwards {
+    0% {
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    to {
+        -webkit-transform: translate(-50%,-50%) rotate(1turn);
+        transform: translate(-50%,-50%) rotate(1turn);
+    }
+}
+
+@keyframes circle-backwards {
+    0% {
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    to {
+        -webkit-transform: translate(-50%,-50%) rotate(-1turn);
+        transform: translate(-50%,-50%) rotate(-1turn);
+    }
+}
+
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+      }
+      0% {
+        opacity: 0.5;
+      }
+}
+  
+@keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+}
